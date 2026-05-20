@@ -43,7 +43,7 @@ async function copyDir(src: string, dest: string) {
 
 async function runNpmInstall(cwd: string) {
     return new Promise<void>((resolve, reject) => {
-        const child = spawn('npm', ['install'], { cwd, stdio: 'inherit', shell: true });
+        const child = spawn('npm install', { cwd, stdio: 'inherit', shell: true });
         child.on('error', reject);
         child.on('close', (code) => code === 0 ? resolve() : reject(new Error('npm install failed')));
     });
@@ -51,7 +51,7 @@ async function runNpmInstall(cwd: string) {
 
 async function runGitInit(cwd: string) {
     return new Promise<void>((resolve, reject) => {
-        const child = spawn('git', ['init'], { cwd, stdio: 'inherit', shell: true });
+        const child = spawn('git init', { cwd, stdio: 'inherit', shell: true });
         child.on('error', reject);
         child.on('close', (code) => code === 0 ? resolve() : reject(new Error('git init failed')));
     });
