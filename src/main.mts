@@ -129,7 +129,7 @@ async function main() {
     program.addHelpCommand();
 
     const opts = program.opts();
-    const destName = opts.dir || await askDestName();
+    const destName = program.args[0] || await askDestName();
     const cwd = process.cwd();
     const templatePath = __templateDir;
 
