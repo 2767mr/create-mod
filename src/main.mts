@@ -157,6 +157,12 @@ async function main() {
             author: opts.author,
             packageName: opts.packageName,
         };
+        if (providedBase.packageName) {
+            const result = validatePackageName(providedBase.packageName)
+            if (result !== true) {
+                throw new Error('Package name invalid: ' + result)
+            }
+        }
 
         const provided = await askPackageFields(providedBase);
 
