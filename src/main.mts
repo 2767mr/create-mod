@@ -125,9 +125,9 @@ async function main() {
         .option('-p, --package-name <name>', descriptions.packageName)
         .option('-d, --description <description>', descriptions.description)
         .option('-a, --author <author>', descriptions.author)
+        .addHelpCommand()
         .parse(process.argv);
 
-    program.addHelpCommand();
 
     const opts = program.opts();
     const destName = program.args[0] || await askDestName();
