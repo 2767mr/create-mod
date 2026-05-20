@@ -1,6 +1,6 @@
 {
   "name": "@project-selene/create-mod",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A script for creating new Alabaster Dawn mods.",
   "main": "dist/main.mjs",
   "bin": "dist/main.mjs",

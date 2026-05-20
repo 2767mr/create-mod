@@ -7,7 +7,7 @@ import inquirer, { type DistinctQuestion } from 'inquirer';
 import path from 'path';
 import { v4 as uuidv4 } from "uuid";
 
-const __templateDir = path.resolve(import.meta.url.substring(process.platform === 'win32' ? 'file:///'.length : 'file://'.length), '../../ template');
+const __templateDir = path.resolve(import.meta.url.substring(process.platform === 'win32' ? 'file:///'.length : 'file://'.length), '../../template');
 
 interface Arguments {
     packageName?: string;
