@@ -1,0 +1,25 @@
+{
+  "name": "<package-name>",
+  "version": "1.0.0",
+  "description": "<description>",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "project-selene-watch",
+    "build": "project-selene-build",
+    "watch": "project-selene-watch",
+    "copyassets": "project-selene-copy-assets",
+    "publish": "project-selene-publish"
+  },
+  "author": "<author>",
+  "dependencies": {
+    "@project-selene/api": "^0.0.2"
+  },
+  "devDependencies": {
+    "typescript": "~5.5.3"
+  },
+  "project-selene": {
+    "id": "<uuid>",
+    "name": "<name>"
+  }
+}

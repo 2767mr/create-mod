@@ -1,0 +1,27 @@
+{
+  "name": "@project-selene/create-mod",
+  "version": "0.1.0",
+  "description": "A script for creating new Alabaster Dawn mods.",
+  "main": "dist/main.mjs",
+  "bin": "dist/main.mjs",
+  "scripts": {
+    "start": "esbuild src/main.mts --platform=node --format=esm --outfile=dist/main.mjs --watch",
+    "build": "esbuild src/main.mts --platform=node --format=esm --outfile=dist/main.mjs",
+    "prepare": "esbuild src/main.mts --platform=node --format=esm --outfile=dist/main.mjs",
+    "prepublish": "esbuild src/main.mts --platform=node --format=esm --outfile=dist/main.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Project Selene",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "inquirer": "^9.0.0",
+    "uuid": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^25.9.1",
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.3"
+  }
+}
