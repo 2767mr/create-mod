@@ -5,9 +5,10 @@ import { Command } from 'commander';
 import { promises as fsp } from 'fs';
 import inquirer, { type DistinctQuestion } from 'inquirer';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from "uuid";
 
-const __templateDir = path.resolve(import.meta.url.substring(process.platform === 'win32' ? 'file:///'.length : 'file://'.length), '../../template');
+const __templateDir = fileURLToPath(new URL('../template', import.meta.url))
 
 interface Arguments {
     packageName?: string;
