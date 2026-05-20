@@ -11,6 +11,14 @@ import validate from 'validate-npm-package-name'
 
 const __templateDir = fileURLToPath(new URL('../template', import.meta.url))
 
+function detectPackageManager(): string {
+    const agent = process.env.npm_config_user_agent;
+    if (!agent) return 'npm';
+    const name = agent.split('/')[0] as string;
+    if (name === 'pnpm' || name === 'yarn' || name === 'bun') return name;
+    return 'npm';
+}
+
 interface Arguments {
     packageName?: string;
     name?: string;
@@ -42,11 +50,13 @@ async function copyDir(src: string, dest: string) {
     }
 }
 
+const packageManager = detectPackageManager();
+
 async function runNpmInstall(cwd: string) {
     return new Promise<void>((resolve, reject) => {
-        const child = spawn('npm install', { cwd, stdio: 'inherit', shell: true });
+        const child = spawn(packageManager + ' install', { cwd, stdio: 'inherit', shell: true });
         child.on('error', reject);
-        child.on('close', (code) => code === 0 ? resolve() : reject(new Error('npm install failed')));
+        child.on('close', (code) => code === 0 ? resolve() : reject(new Error(`${packageManager} install failed`)));
     });
 }
 
@@ -177,7 +187,7 @@ async function main() {
             await applyPackageFields(pkgPath, raw, provided);
         }
 
-        console.log('Installing dependencies...');
+        console.log(`Installing dependencies with ${packageManager}...`);
         await runNpmInstall(destPath);
 
         console.log('Installing git repository...');
