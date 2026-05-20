@@ -7,6 +7,7 @@ import inquirer, { type DistinctQuestion } from 'inquirer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from "uuid";
+import validate from 'validate-npm-package-name'
 
 const __templateDir = fileURLToPath(new URL('../template', import.meta.url))
 
@@ -67,6 +68,14 @@ async function askDestName(): Promise<string> {
     return dest;
 }
 
+function validatePackageName(input: string): string | true {
+    const { validForNewPackages, warnings, errors } = validate(input)
+    if (!validForNewPackages) {
+        return (warnings?.join('\n') ?? '') + (errors?.join('\n') ?? '');
+    }
+    return true;
+}
+
 async function askPackageFields(providedBase: Arguments): Promise<Arguments> {
     const result = Object.assign({}, providedBase);
     const prompts: DistinctQuestion[] = [];
@@ -87,15 +96,7 @@ async function askPackageFields(providedBase: Arguments): Promise<Arguments> {
             message: descriptions.packageName + ":",
             type: 'input',
             default: defaultPackageName,
-            validate: (input) => {
-                if (!input) return 'Package name cannot be empty';
-                if (/\s/.test(input)) return 'Package name cannot contain spaces';
-                if (input.toLowerCase() !== input) return 'Package name must be lowercase';
-                if (!/^(?:(?:@(?:[a-z0-9-*~][a-z0-9-*._~]*)?\/[a-z0-9-._~])|[a-z0-9-~])[a-z0-9-._~]*$/.test(input)) {
-                    return 'Invalid npm package name. Refer to https://docs.npmjs.com/creating-a-package-json-file#required-name-and-version-fields for rules.';
-                }
-                return true;
-            },
+            validate: validatePackageName
         });
     }
 

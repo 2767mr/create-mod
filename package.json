@@ -16,11 +16,13 @@
   "dependencies": {
     "commander": "^11.0.0",
     "inquirer": "^9.0.0",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.0",
+    "validate-npm-package-name": "^8.0.0"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.9",
     "@types/node": "^25.9.1",
+    "@types/validate-npm-package-name": "^4.0.2",
     "esbuild": "^0.28.0",
     "typescript": "^6.0.3"
   }
