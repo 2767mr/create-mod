@@ -152,7 +152,7 @@ async function main() {
 
         const providedBase: Arguments = {
             name: opts.name,
-            description: opts.description || opts.desc,
+            description: opts.description,
             author: opts.author,
             packageName: opts.packageName,
         };
